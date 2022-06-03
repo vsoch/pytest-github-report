@@ -1,0 +1,59 @@
+name: pytest-github-report
+
+on:
+  push:
+    branches:
+      - main
+  pull_request: []
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: |
+          conda create --quiet --name black pyflakes
+          export PATH="/usr/share/miniconda/bin:$PATH"
+          source activate black
+          pip install -e .
+
+      - name: Lint python code
+        run: |
+          export PATH="/usr/share/miniconda/bin:$PATH"
+          source activate black
+          pip install black
+          black --check pytest_github_report
+          pyflakes pytest_github_report
+  
+      - name: Report via Command Line
+        run: |
+          export PATH="/usr/share/miniconda/bin:$PATH"
+          source activate black
+          pytest --github-report tests/
+
+      - name: Report with Verbosity
+        if: always()
+        env:
+          pytest_github_report: true
+          pytest_report_title: "Report With Verbosity"
+          pytest_use_zeros: true
+          pytest_verbosity: 1
+        run: |      
+          export PATH="/usr/share/miniconda/bin:$PATH"
+          source activate black
+          pytest tests
+                    
+      - name: Report via Environment
+        if: always()
+        env:
+          pytest_report_title: ":unicorn: Report With Custom Emojis :unicorn:"
+          pytest_passed_emoji: ":green_heart:"
+          pytest_failed_emoji: ":heart:"
+          pytest_xpassed_emoji: ":bangbang:"
+          pytest_xfailed_emoji: ":bangbang:"
+          pytest_skipped_emoji: ":shipit:"
+        run: |      
+          export PATH="/usr/share/miniconda/bin:$PATH"
+          source activate black
+          pytest --github-report tests
