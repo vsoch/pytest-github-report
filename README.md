@@ -149,7 +149,7 @@ Choose the emijos (or characters) you want for your tests! A helpful
 
 Here is an example with the custom emojis above!
 
-![report-custom-emojis.png](report-custom-emojis.png)
+![img/report-custom-emojis.png](img/report-custom-emojis.png)
 
 You can see the [GitHub workflow](.github/workflows/main.yml)
 for these examples.
