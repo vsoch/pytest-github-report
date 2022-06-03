@@ -1,10 +1,20 @@
 # Pytest GitHub Report
 
+[![PyPI version](https://badge.fury.io/py/pytest-github-report.svg)](https://badge.fury.io/py/pytest-github-report)
+
 This is an example of how we can use [GitHub reports]() with [pytest](https://github.com/thombashi/pytest-md-report) to
 generate a nice markdown matrix of results. The [tests](tests) here are from the [pytest-md-report](https://github.com/thombashi/pytest-md-report)
 repository.
 
 ## Usage
+
+### Install from Pypi
+
+You can install [from Pypi](https://pypi.org/project/pytest-github-report/)
+
+```bash
+$ pip install pytest-github-report
+```
 
 ### Local
 
