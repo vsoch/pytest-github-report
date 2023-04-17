@@ -50,7 +50,7 @@ def pytest_addoption(parser):
 
     # Add pytest.ini values
     parser.addini(
-        "pytest-github-report",
+        "pw-github-report",
         default=False,
         help="Generate a GitHub workflow markdown report (via pytest.ini)",
     )
@@ -64,11 +64,11 @@ def wants_github_report(config: Config) -> bool:
         return False
 
     # First look at command line and environment
-    make_report = config.option.github_report or os.environ.get("pytest_github_report")
+    make_report = config.option.github_report or os.environ.get("pw_github_report")
 
     # Then pytest.ini
     if make_report is None:
-        make_report = config.getini("pytest-github-report")
+        make_report = config.getini("pw-github-report")
 
     # Allows it to be None, False, etc.
     if not make_report:

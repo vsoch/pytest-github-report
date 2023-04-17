@@ -5,7 +5,7 @@ import os
 
 def get_lookup():
     lookup = {}
-    version_file = os.path.join("pytest_github_report", "version.py")
+    version_file = os.path.join("pw_github_report", "version.py")
     with open(version_file) as filey:
         exec(filey.read(), lookup)
     return lookup
@@ -102,7 +102,7 @@ if __name__ == "__main__":
         ],
         entry_points={
             "pytest11": [
-                "pytest-github-report = pytest_github_report.plugin",
+                "pw-github-report = pw_github_report.plugin",
             ]
         },
     )
